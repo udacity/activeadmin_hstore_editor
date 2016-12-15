@@ -16,8 +16,9 @@ class JsonInput < Formtastic::Inputs::TextInput
   private
 
   def value_to_json(current_value, method)
+    return '' if current_value.blank?
     return current_value if column_type_json?(method)
-    current_value.try(:to_json)
+    current_value.try(:to_json).to_s
   end
 
   def column_type_json?(method)
